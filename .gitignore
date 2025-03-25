@@ -1,0 +1,21 @@
+# Hugo default output directory
+/public/
+/resources/_gen/
+/assets/jsconfig.json
+hugo_stats.json
+
+# Temporary files
+.hugo_build.lock
+
+# Executable may be added to repository
+hugo.exe
+hugo.darwin
+hugo.linux
+
+# TailwindCSS
+/static/css/styles.css
+
+# Misc
+.DS_Store
+node_modules/
+*.log
