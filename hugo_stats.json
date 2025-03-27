@@ -17,13 +17,14 @@
       "title"
     ],
     "classes": [
-      "bg-gray-900",
+      "bg-gray-950",
       "container",
       "flex",
       "flex-col",
       "flex-grow",
       "font-bold",
       "font-medium",
+      "font-sans",
       "hover:text-white",
       "items-center",
       "justify-between",
