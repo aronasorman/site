@@ -6,6 +6,7 @@
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
     <!-- <link rel="stylesheet" href="/css/styles.css"> -->
     {{ partialCached "css.html" . }}
+    <script src="https://cdn.usefathom.com/script.js" data-site="XRMVZUYU" defer></script>
 </head>
 <body class="bg-gray-950 text-gray-200 min-h-screen flex flex-col">
     <header class="container mx-auto px-4 py-6">
@@ -22,7 +23,7 @@
         {{ block "main" . }}{{ end }}
     </main>
     <footer class="container mx-auto px-4 py-6 text-center text-gray-500 text-sm">
-        <div class="mb-2">© {{ now.Format "2006" }} Aron Asor</div>
+        <div class="mb-2"> &copy; {{ now.Format "2006" }} Aron Asor</div>
     </footer>
 </body>
 </html>
