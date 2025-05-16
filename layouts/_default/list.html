@@ -17,7 +17,7 @@
           <p class="text-sm text-gray-500">{{ .Date.Format "January 2, 2006" }}</p>
         {{ end }}
         {{ if .Params.summary }}
-          <p class="text-gray-400 mt-1">{{ .Params.summary }}</p>
+          <p class="text-gray-400 mt-1 ml-5">{{ .Params.summary }}</p>
         {{ else }}{{/* Fallback to first sentence if no manual summary */}}
           {{ with .Plain }}
             {{ $first_sentence_parts := split . "." }}
