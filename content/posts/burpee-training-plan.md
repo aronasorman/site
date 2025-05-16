@@ -1,6 +1,5 @@
 ---
 title: "Adaptive Burpee Training Plan: 0 to 100"
-date: 2025-05-15
 draft: false
 tags: ["fitness"]
 summary: "A structured training plan to help me reach 100 burpees."
