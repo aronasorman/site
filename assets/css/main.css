@@ -6,3 +6,21 @@
 @theme {
   --font-sans: "Lora", serif;
 }
+
+/* If file is empty or only has Tailwind directives, this will set it up. 
+   If it has other content, these will be appended. */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h2 {
+    @apply text-2xl font-bold text-gray-100 mt-8 mb-4; /* Light text for dark theme */
+  }
+  h3 {
+    @apply text-xl font-semibold text-gray-200 mt-6 mb-3; /* Light text for dark theme */
+  }
+  p {
+    @apply mb-4 text-gray-300; /* Generous spacing and light text for paragraphs */
+  }
+}

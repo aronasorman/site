@@ -1,0 +1,35 @@
+{{ define "main" }}
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold mb-2">{{ .Title }}</h1>
+    {{/* If this is a taxonomy or term page, you might want to display the description */}}
+    {{ if .Description }}
+      <p class="text-lg text-gray-400">{{ .Description }}</p>
+    {{ end }}
+  </div>
+
+  <ul class="space-y-4">
+    {{ range .Pages }}
+      <li>
+        <a href="{{ .RelPermalink }}" class="text-xl hover:text-white transition">
+          {{ .Title }}
+        </a>
+        {{ if .Date }}
+          <p class="text-sm text-gray-500">{{ .Date.Format "January 2, 2006" }}</p>
+        {{ end }}
+        {{ if .Params.summary }}
+          <p class="text-gray-400 mt-1">{{ .Params.summary }}</p>
+        {{ else }}{{/* Fallback to first sentence if no manual summary */}}
+          {{ with .Plain }}
+            {{ $first_sentence_parts := split . "." }}
+            {{ if gt (len $first_sentence_parts) 0 }}
+              {{ $first_sentence := print (index $first_sentence_parts 0) "." }}
+              <p class="text-gray-400 mt-1">{{ $first_sentence }}</p>
+            {{ end }}
+          {{ end }}
+        {{ end }}
+      </li>
+    {{ else }}
+      <p>No content found.</p>
+    {{ end }}
+  </ul>
+{{ end }}
