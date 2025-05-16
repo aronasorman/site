@@ -3,7 +3,7 @@ baseURL = "https://asorman.io/"
 languageCode = "en-us"
 title = "An Aronasaur"
 
-disableKinds = ["taxonomy"]
+# disableKinds = ["taxonomy"]
 
 [menu]
 [[menu.main]]
@@ -18,6 +18,16 @@ weight = 2
 name = "Poetry"
 url = "https://poetry.asorman.io/"
 weight = 3
+[[menu.main]]
+  name = "Fitness"
+  identifier = "fitness"
+  url = "/tags/fitness/"
+  weight = 4
+[[menu.main]]
+  parent = "fitness"
+  name = "Burpee Training Plan"
+  url = "/posts/burpee-training-plan/"
+  weight = 1
 [build]
 [build.buildStats]
 enable = true
@@ -38,3 +48,8 @@ target = 'assets/notwatching/hugo_stats.json'
 [caches]
 [caches.images]
 dir = ':cacheDir/images'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
