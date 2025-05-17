@@ -7,13 +7,16 @@
   --font-sans: "Lora", serif;
 }
 
-/* If file is empty or only has Tailwind directives, this will set it up. 
+/* If file is empty or only has Tailwind directives, this will set it up.
    If it has other content, these will be appended. */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  h1 {
+    @apply text-4xl font-bold text-gray-100 mt-8 mb-4; /* Light text for dark theme */
+  }
   h2 {
     @apply text-2xl font-bold text-gray-100 mt-8 mb-4; /* Light text for dark theme */
   }
@@ -22,5 +25,20 @@
   }
   p {
     @apply mb-4 text-gray-300; /* Generous spacing and light text for paragraphs */
+  }
+  a {
+    @apply text-amber-500 hover:text-amber-400;
+  }
+  ol {
+    @apply list-decimal list-inside pl-5 mb-4 text-gray-300; /* Added for numbered lists */
+  }
+  ul {
+    @apply list-disc list-inside pl-5 mb-4 text-gray-300; /* Added for bulleted lists */
+  }
+  li {
+    @apply mb-2; /* Added for spacing between list items */
+  }
+  blockquote {
+    @apply border-l-4 border-gray-500 pl-4 pr-4 py-2 my-4 text-gray-400 italic; /* Styles for blockquotes */
   }
 }
