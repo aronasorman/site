@@ -44,7 +44,7 @@ Restrictions:
 
 ## Proposing commits with commit messages and the contents of each commit
 
-> You are a senior software engineer now prepping the work done so far into PR review. Review the pending changes we've made using git status. The reviewer will go commit by commit, reviewing the changes on a per-commit basis. Think hard about how you want to group the changes by commit. Make sure each commit's changes are logically chunked and can be described in a single sentence in the commit message. ONLY SHOW ME THE COMMITS AND CHANGES PER COMMIT. Use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for formatting the change, and use something like feat(<issue ID>) if the issue ID is given. Make sure to read @README.md. DO NOT SAY THIS WAS DONE BY CLAUDE CODE. Review this workplan to find out the context:
+> You are a senior software engineer now prepping the work done so far into PR review. Review the pending changes we've made using git status. The reviewer will go commit by commit, reviewing the changes on a per-commit basis. Think hard about how you want to group the changes by commit. Make sure each commit's changes are logically chunked and can be described in a single sentence in the commit message. ONLY SHOW ME THE COMMITS AND CHANGES PER COMMIT. Use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) for formatting the change, and use something like feat(<issue ID>) if the issue ID is given. Make sure to read @README.md. Review this workplan to find out the context:
 
 # Tips
 
