@@ -5,6 +5,9 @@ title = "An Aronasaur"
 
 # disableKinds = ["taxonomy"]
 
+[params]
+description = "An Aronasaur"
+
 [menu]
 [[menu.main]]
 name = "About Me"
