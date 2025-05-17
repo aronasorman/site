@@ -2,6 +2,7 @@
 draft: false
 title: "AI Agent Prompts"
 tags: ["ai", "code"]
+date: 2025-05-16
 summary: "Where I dump my learnings about what prompts work best for coding."
 ---
 
