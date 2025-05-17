@@ -14,7 +14,7 @@
           {{ .Title }}
         </a>
         {{ if .Date }}
-          <p class="text-sm text-gray-500">{{ .Date.Format "January 2, 2006" }}</p>
+          <p class="text-sm text-gray-500 ml-5">{{ .Date.Format "January 2, 2006" }}</p>
         {{ end }}
         {{ if .Params.summary }}
           <p class="text-gray-400 mt-1 ml-5">{{ .Params.summary }}</p>
