@@ -11,13 +11,88 @@
 <body class="bg-gray-950 text-gray-200 min-h-screen flex flex-col">
     <header class="container mx-auto px-4 py-6">
         <nav class="flex justify-between items-center">
-            <a href="/" class="text-xl font-medium">{{ .Site.Title }}</a>
-            <div class="space-x-6">
+            <!-- Site Title -->
+            <a href="/" class="text-xl font-medium">
+                <span class="hidden md:inline">{{ .Site.Title }}</span>
+                <span class="md:hidden">AA</span>
+            </a>
+
+            <div class="flex items-center">
+                <!-- "About Me" Link - Always Visible on mobile next to burger, or inline on desktop -->
                 {{ range .Site.Menus.main }}
-                <a href="{{ .URL }}" class="hover:text-white transition">{{ .Name }}</a>
+                    {{ if eq .Name "About Me" }}
+                        <a href="{{ .URL }}" class="text-gray-200 hover:text-white transition px-3 py-2 text-sm font-medium">{{ .Name }}</a>
+                    {{ end }}
                 {{ end }}
+
+                <!-- Desktop Links (excluding "About Me") -->
+                <div class="hidden md:flex items-center space-x-1 ml-2">
+                    {{ range .Site.Menus.main }}
+                        {{ if ne .Name "About Me" }}
+                            {{ if .HasChildren }}
+                                <div class="relative group">
+                                    <a href="{{ .URL }}" class="text-gray-200 hover:text-white transition px-3 py-2 rounded-md text-sm font-medium flex items-center" aria-haspopup="true">
+                                        {{ .Name }}
+                                        <svg class="ml-1 h-4 w-4 text-gray-400 group-hover:text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                        </svg>
+                                    </a>
+                                    <div class="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-gray-800 ring-1 ring-black ring-opacity-5 opacity-0 group-hover:opacity-100 transition-opacity duration-200 ease-in-out z-20 invisible group-hover:visible focus-within:opacity-100 focus-within:visible">
+                                        <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                                            {{ range .Children }}
+                                                <a href="{{ .URL }}" class="block px-4 py-2 text-sm text-gray-200 hover:bg-gray-700 hover:text-white" role="menuitem">{{ .Name }}</a>
+                                            {{ end }}
+                                        </div>
+                                    </div>
+                                </div>
+                            {{ else }}
+                                <a href="{{ .URL }}" class="text-gray-200 hover:text-white transition px-3 py-2 rounded-md text-sm font-medium">{{ .Name }}</a>
+                            {{ end }}
+                        {{ end }}
+                    {{ end }}
+                </div>
+
+                <!-- Burger Menu Button (Mobile) -->
+                <div class="md:hidden ml-3">
+                    <button id="burger-menu-toggle" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="block h-6 w-6 burger-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg class="hidden h-6 w-6 close-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
             </div>
         </nav>
+
+        <!-- Mobile menu, show/hide based on menu state. -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                {{ range .Site.Menus.main }}
+                    {{ if ne .Name "About Me" }} <!-- "About Me" is already visible -->
+                         {{ if .HasChildren }}
+                            <div> <!-- Wrapper for collapsible parent item -->
+                                <button class="mobile-menu-parent w-full text-gray-200 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-base font-medium flex justify-end items-center text-right">
+                                    <span>{{ .Name }}</span>
+                                    <svg class="ml-1 h-5 w-5 transform transition-transform duration-200 arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                                <div class="mobile-menu-children hidden pl-4 mt-1 space-y-1">
+                                    {{ range .Children }}
+                                        <a href="{{ .URL }}" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium text-right">{{ .Name }}</a>
+                                    {{ end }}
+                                </div>
+                            </div>
+                        {{ else }}
+                            <a href="{{ .URL }}" class="text-gray-200 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium text-right">{{ .Name }}</a>
+                        {{ end }}
+                    {{ end }}
+                {{ end }}
+            </div>
+        </div>
     </header>
     <main class="container mx-auto px-4 py-8 flex-grow">
         {{ block "main" . }}{{ end }}
@@ -25,5 +100,42 @@
     <footer class="container mx-auto px-4 py-6 text-center text-gray-500 text-sm">
         <div class="mb-2"> &copy; {{ now.Format "2006" }} Aron Asor</div>
     </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleButton = document.getElementById('burger-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (toggleButton && mobileMenu) {
+        const burgerIcon = toggleButton.querySelector('.burger-icon');
+        const closeIcon = toggleButton.querySelector('.close-icon');
+
+        toggleButton.addEventListener('click', () => {
+            const isExpanded = toggleButton.getAttribute('aria-expanded') === 'true' || false;
+            toggleButton.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('hidden');
+            burgerIcon.classList.toggle('hidden');
+            burgerIcon.classList.toggle('block');
+            closeIcon.classList.toggle('hidden');
+            closeIcon.classList.toggle('block');
+        });
+    }
+
+    const parentMenuItems = document.querySelectorAll('.mobile-menu-parent');
+    parentMenuItems.forEach(button => {
+        button.addEventListener('click', (event) => {
+            // Prevent click on parent button from navigating if it's also a link
+            // event.preventDefault(); 
+            const childrenContainer = button.nextElementSibling;
+            const arrowIcon = button.querySelector('.arrow-icon');
+            if (childrenContainer && childrenContainer.classList.contains('mobile-menu-children')) {
+                childrenContainer.classList.toggle('hidden');
+                arrowIcon.classList.toggle('rotate-180'); 
+            }
+        });
+    });
+});
+</script>
+
 </body>
 </html>
