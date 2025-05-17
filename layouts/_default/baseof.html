@@ -4,6 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}</title>
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}">
+    <meta property="og:type" content="{{ if .IsHome }}website{{ else }}article{{ end }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+    <meta property="og:site_name" content="{{ .Site.Title }}">
+    <meta property="og:description" content="{{ if .Params.summary }}{{ .Params.summary }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}">
+    <meta name="twitter:description" content="{{ if .Params.summary }}{{ .Params.summary }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+
     <!-- <link rel="stylesheet" href="/css/styles.css"> -->
     {{ partialCached "css.html" . }}
     <script src="https://cdn.usefathom.com/script.js" data-site="XRMVZUYU" defer></script>
@@ -105,7 +118,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const toggleButton = document.getElementById('burger-menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
-    
+
     if (toggleButton && mobileMenu) {
         const burgerIcon = toggleButton.querySelector('.burger-icon');
         const closeIcon = toggleButton.querySelector('.close-icon');
@@ -125,12 +138,12 @@ document.addEventListener('DOMContentLoaded', () => {
     parentMenuItems.forEach(button => {
         button.addEventListener('click', (event) => {
             // Prevent click on parent button from navigating if it's also a link
-            // event.preventDefault(); 
+            // event.preventDefault();
             const childrenContainer = button.nextElementSibling;
             const arrowIcon = button.querySelector('.arrow-icon');
             if (childrenContainer && childrenContainer.classList.contains('mobile-menu-children')) {
                 childrenContainer.classList.toggle('hidden');
-                arrowIcon.classList.toggle('rotate-180'); 
+                arrowIcon.classList.toggle('rotate-180');
             }
         });
     });
