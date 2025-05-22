@@ -41,4 +41,12 @@
   blockquote {
     @apply border-l-4 border-gray-500 pl-4 pr-4 py-2 my-4 text-gray-400 italic; /* Styles for blockquotes */
   }
+  
+  hr {
+    @apply my-6; /* Add more vertical margin to horizontal rules */
+  }
+  
+  hr + h3, hr + h4, hr + h5, hr + h6 {
+    @apply mt-8; /* Add extra top margin to headings that follow horizontal rules */
+  }
 }
