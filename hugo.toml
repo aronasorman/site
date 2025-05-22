@@ -31,6 +31,11 @@ name = "Code"
 identifier = "code"
 url = "/tags/code/"
 weight = 5
+[[menu.main]]
+name = "Adventures"
+identifier = "adventures"
+url = "/tags/adventures/"
+weight = 6
 [build]
 [build.buildStats]
 enable = true
