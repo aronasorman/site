@@ -1,6 +1,6 @@
 +++
 date = '2025-05-22'
-draft = true
+draft = false
 title = '2025 Memorial Day Bikepacking Trip'
 tags = ["bikepacking", "fitness", "adventures"]
 summary = "Manchester State Park to Illahee State Park"
